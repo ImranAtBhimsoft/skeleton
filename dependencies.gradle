@@ -1,0 +1,75 @@
+ext {
+    versions = [
+            coreKtx           : "1.7.0",
+            appcompat         : "1.4.0",
+            material          : "1.5.0",
+            constraintLayout  : "2.1.3",
+            gragmentKtx       : "1.4.1",
+            junitExt          : "1.1.3",
+            junit4Version     : "4.13.2",
+            espressoCore      : "3.4.0",
+            testCore          : "1.4.0",
+            testRules         : "1.4.0",
+            mockito           : "4.3.1",
+            hilt              : "2.38.1",
+
+            retrofit          : "2.9.0",
+            okHttp            : "4.9.3",
+            gson              : "2.8.9",
+            gsonConverter     : "2.8.1",
+
+            lifecycleRuntime  : "2.3.1",
+            lifecycleViewmodel: '2.3.1',
+            lifecycleExtension: '2.2.0',
+            lifecycleCommon   : '2.4.0',
+
+            coroutines        : '1.5.2'
+    ]
+
+    androidX = [
+            coreKtx         : "androidx.core:core-ktx:${versions.coreKtx}",
+            appcompat       : "androidx.appcompat:appcompat:${versions.appcompat}",
+            constraintLayout: "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}",
+            material        : "com.google.android.material:material:${versions.material}",
+            fragmentKtx     : "androidx.fragment:fragment-ktx:${versions.gragmentKtx}",
+    ]
+
+    lifecycle = [
+            lifecycleViewmodel: "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycleViewmodel}",
+            lifecycleXxtension: "androidx.lifecycle:lifecycle-extensions:${versions.lifecycleExtension}",
+            lifecycleRuntime  : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycleRuntime}",
+            lifecycleCommon   : "androidx.lifecycle:lifecycle-common-java8:${versions.lifecycleCommon}"
+    ]
+    coroutines = [
+            coroutine    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
+            coroutineCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
+    ]
+    hiltDi = [
+            hiltAndroid : "com.google.dagger:hilt-android:${versions.hilt}",
+            hiltCompiler: "com.google.dagger:hilt-compiler:${versions.hilt}"
+    ]
+
+    retorfit = [
+            retrofit     : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            okHttp       : "com.squareup.okhttp3:okhttp:${versions.okHttp}",
+            logger       : "com.squareup.okhttp3:logging-interceptor:${versions.okHttp}",
+            gson         : "com.google.code.gson:gson:${versions.gson}",
+            gsonConverter: "com.squareup.retrofit2:converter-gson:${versions.gsonConverter}"
+    ]
+
+    test = [
+            junit4: "junit:junit:${versions.junit4Version}"
+    ]
+
+    androidTest = [
+            testCore      : "androidx.test:core:${versions.testCore}",
+            testCoreKtx   : "androidx.test:core-ktx:${versions.testCore}",
+            junitExt      : "androidx.test.ext:junit:${versions.junitExt}",
+            junitExtKtx   : "androidx.test.ext:junit-ktx:${versions.junitExt}",
+            testRunner    : "androidx.test:runner:${versions.testRunner}",
+            testRules     : "androidx.test:rules:${versions.testRules}",
+            espressoCore  : "androidx.test.espresso:espresso-core:${versions.espressoCore}",
+            mockitoCore   : "org.mockito:mockito-core:${versions.mockito}",
+            mockitoAndroid: "org.mockito:mockito-android:${versions.mockito}",
+    ]
+}
