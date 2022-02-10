@@ -1,7 +1,7 @@
 package com.primelab.skeleton.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.primelab.common.resultFlow
+import com.primelab.common.extensions.resultFlow
 import com.primelab.skeleton.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -15,5 +15,9 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(private val repository: UserRepository) : ViewModel() {
     fun loginUser(param: HashMap<String, Any>) = resultFlow {
         repository.login(param)
+    }
+
+    fun getAllUser() = resultFlow {
+        repository.getAllUser()
     }
 }

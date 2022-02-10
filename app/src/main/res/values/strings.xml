@@ -2,4 +2,6 @@
     <string name="app_name">Skeleton</string>
     <string name="hello_word">Hello World!</string>
     <string name="click_me">Click Me</string>
+    <string name="login_fragment">Login Fragment</string>
+    <string name="signup_fragment">Signup Fragment</string>
 </resources>

@@ -16,6 +16,10 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -44,6 +48,10 @@ dependencies {
     //Hilt
     implementation hiltDi.hiltAndroid
     kapt hiltDi.hiltCompiler
+
+    //Room
+    implementation room.roomRuntime
+    kapt room.roomCompiler
 
     testImplementation test.junit4
     androidTestImplementation androidTest.values()

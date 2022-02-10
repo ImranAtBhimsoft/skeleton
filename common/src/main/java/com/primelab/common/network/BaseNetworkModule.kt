@@ -11,8 +11,7 @@ import retrofit2.Retrofit
  */
 interface BaseNetworkModule {
     fun getBaseUrl(): String
-    fun getRetrofit(suffix: String = ""): Retrofit
-    fun getOkHttpClient(): OkHttpClient
+    fun getRetrofit(httpClient: OkHttpClient, suffix: String = ""): Retrofit
+    fun getOkHttpClient(autInterceptor: Interceptor?): OkHttpClient
     fun <T> getAPi(retrofit: Retrofit, clazz: Class<T>): T
-    fun getAuthInterceptor(): Interceptor?
 }

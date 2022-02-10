@@ -12,21 +12,20 @@ import retrofit2.converter.gson.GsonConverterFactory
  * PrimeLab.io on 09/02/2022.
  */
 abstract class BaseNetworkModuleImpl : BaseNetworkModule {
-
-    override fun getRetrofit(suffix: String): Retrofit =
+    override fun getRetrofit(httpClient: OkHttpClient, suffix: String): Retrofit =
         Retrofit.Builder()
             .baseUrl(getBaseUrl())
             .addConverterFactory(GsonConverterFactory.create())
-            .client(getOkHttpClient())
+            .client(httpClient)
             .build()
 
-    override fun getOkHttpClient(): OkHttpClient {
+    override fun getOkHttpClient(autInterceptor: Interceptor?): OkHttpClient {
         val logging = HttpLoggingInterceptor().also {
             it.level = HttpLoggingInterceptor.Level.BODY
         }
         val okhttpClient = OkHttpClient.Builder()
             .addInterceptor(logging)
-        getAuthInterceptor()?.let {
+        autInterceptor?.let {
             okhttpClient.addInterceptor(it)
         }
         return okhttpClient.build()
@@ -34,9 +33,5 @@ abstract class BaseNetworkModuleImpl : BaseNetworkModule {
 
     override fun <T> getAPi(retrofit: Retrofit, clazz: Class<T>): T {
         return retrofit.create(clazz)
-    }
-
-    override fun getAuthInterceptor(): Interceptor? {
-        return null
     }
 }

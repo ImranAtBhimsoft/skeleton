@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.viewModels
-import com.primelab.common.observeResultFlow
+import androidx.fragment.app.activityViewModels
+import com.primelab.common.extensions.observeResultFlow
+import com.primelab.common.session.UserSession
+import com.primelab.common.session.UserToken
 import com.primelab.common.ui.BaseFragment
 import com.primelab.skeleton.R
 import com.primelab.skeleton.databinding.FragmentMainBinding
 import com.primelab.skeleton.viewmodels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Created by m.imran
@@ -20,16 +23,33 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainFragment : BaseFragment(R.layout.fragment_main) {
     private lateinit var binding: FragmentMainBinding
-    private val userViewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
+
+    @Inject
+    lateinit var userSession: UserSession
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainBinding.bind(view)
         binding.clickMe.setOnClickListener {
             login()
         }
+        getAllUsers()
+    }
+
+    private fun getAllUsers() {
+        observeResultFlow(
+            userViewModel.getAllUser(),
+            errorHandler = {
+                Log.d(">>>Test", "Error is : $it")
+            },
+            successHandler = {
+                Log.d(">>>Test", "Data is : $it")
+            }
+        )
     }
 
     private fun login() {
+        Log.d(">>>Test", "Token ${userSession.token}")
         val params = hashMapOf<String, Any>()
         observeResultFlow(
             userViewModel.loginUser(params),
@@ -46,5 +66,4 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             }
         )
     }
-
 }

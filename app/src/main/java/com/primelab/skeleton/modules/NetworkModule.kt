@@ -2,6 +2,8 @@ package com.primelab.skeleton.modules
 
 import com.primelab.common.di.BaseUrl
 import com.primelab.common.network.BaseNetworkModuleImpl
+import com.primelab.common.session.UserSession
+import com.primelab.skeleton.networks.AuthInterceptor
 import com.primelab.skeleton.networks.UserApi
 import dagger.Module
 import dagger.Provides
@@ -18,6 +20,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule : BaseNetworkModuleImpl() {
+
     override fun getBaseUrl(): String {
         return "https://lmn.opq.rs"
     }
@@ -29,9 +32,11 @@ class NetworkModule : BaseNetworkModuleImpl() {
 
     @Provides
     @Singleton
-    fun provideHttpClient(): OkHttpClient = getOkHttpClient()
+    fun provideHttpClient(userSession: UserSession): OkHttpClient =
+        getOkHttpClient(AuthInterceptor(userSession))
 
     @Provides
     @Singleton
-    fun provideLoginApi(): UserApi = getAPi(getRetrofit(), UserApi::class.java)
+    fun provideLoginApi(okHttpClient: OkHttpClient): UserApi =
+        getAPi(getRetrofit(okHttpClient), UserApi::class.java)
 }
