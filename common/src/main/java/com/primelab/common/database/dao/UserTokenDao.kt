@@ -1,9 +1,6 @@
 package com.primelab.common.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.primelab.common.session.UserToken
 
 /**
@@ -17,5 +14,8 @@ interface UserTokenDao {
     suspend fun getToken(): UserToken?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun save(token: UserToken)
+    suspend fun save(token: UserToken)
+
+    @Query("DELETE FROM usertoken")
+    suspend fun delete()
 }

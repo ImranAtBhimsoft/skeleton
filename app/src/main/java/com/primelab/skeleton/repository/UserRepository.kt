@@ -1,6 +1,6 @@
 package com.primelab.skeleton.repository
 
-import com.primelab.common.repository.BaseRepository
+import com.primelab.common.session.UserSession
 import com.primelab.skeleton.database.daos.UserDao
 import com.primelab.skeleton.networks.UserApi
 import javax.inject.Inject
@@ -12,8 +12,9 @@ import javax.inject.Inject
  */
 class UserRepository @Inject constructor(
     private val api: UserApi,
-    private val userDao: UserDao
-) : BaseRepository() {
+    private val userDao: UserDao,
+    userSession: UserSession
+) : AppBaseRepository(api, userSession) {
     suspend fun login(params: HashMap<String, Any>) =
         getNetWorkResponse(request = { api.login(params) })
 

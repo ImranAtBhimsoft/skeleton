@@ -1,13 +1,12 @@
 package com.primelab.skeleton.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.primelab.common.extensions.observeResultFlow
+import com.primelab.common.logger.Log
 import com.primelab.common.session.UserSession
-import com.primelab.common.session.UserToken
 import com.primelab.common.ui.BaseFragment
 import com.primelab.skeleton.R
 import com.primelab.skeleton.databinding.FragmentMainBinding

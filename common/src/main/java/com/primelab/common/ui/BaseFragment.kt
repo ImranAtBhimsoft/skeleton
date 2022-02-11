@@ -8,6 +8,4 @@ import androidx.fragment.app.Fragment
  * Senior Software Engineer at
  * PrimeLab.io on 09/02/2022.
  */
-abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
-
-}
+abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes)

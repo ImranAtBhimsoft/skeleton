@@ -7,5 +7,4 @@ import androidx.appcompat.app.AppCompatActivity
  * Senior Software Engineer at
  * PrimeLab.io on 09/02/2022.
  */
-abstract class BaseActivity:AppCompatActivity() {
-}
+abstract class BaseActivity:AppCompatActivity()

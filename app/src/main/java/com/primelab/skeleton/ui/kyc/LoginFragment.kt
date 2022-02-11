@@ -1,9 +1,9 @@
 package com.primelab.skeleton.ui.kyc
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.primelab.common.extensions.viewBinding
+import com.primelab.common.logger.Log
 import com.primelab.common.ui.BaseFragment
 import com.primelab.skeleton.R
 import com.primelab.skeleton.databinding.FragmentLoginBinding

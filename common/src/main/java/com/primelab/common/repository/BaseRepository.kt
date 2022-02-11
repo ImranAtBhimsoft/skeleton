@@ -1,6 +1,8 @@
 package com.primelab.common.repository
 
 import com.google.gson.Gson
+import com.primelab.common.session.UserSession
+import com.primelab.common.session.UserToken
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -13,10 +15,11 @@ import java.net.UnknownHostException
  * Senior Software Engineer at
  * PrimeLab.io on 09/02/2022.
  */
-abstract class BaseRepository {
+abstract class BaseRepository(private val userSession: UserSession) {
     suspend fun <T> getNetWorkResponse(
         request: suspend () -> Response<T>,
-        dispatcher: CoroutineDispatcher = Dispatchers.IO
+        dispatcher: CoroutineDispatcher = Dispatchers.IO,
+        retry: Boolean = true
     ): Resource<T> {
 
         return withContext(dispatcher) {
@@ -25,7 +28,13 @@ abstract class BaseRepository {
                 if (result.isSuccessful) {
                     Resource.Success(result.body())
                 } else {
-                    Resource.Error(parseError(HttpException(result)))
+                    val httpException = HttpException(result)
+                    if (httpException.code() == 403 && retry) {
+                        refreshToken()
+                        getNetWorkResponse(request = request, retry = false)
+                    } else {
+                        Resource.Error(parseError(httpException))
+                    }
                 }
             } catch (ex: Throwable) {
                 var message = ex.localizedMessage.orEmpty()
@@ -35,6 +44,12 @@ abstract class BaseRepository {
                 Resource.Error(AppError(message, -1))
             }
         }
+    }
+
+    private suspend fun refreshToken() {
+        val tokenResult = getRefreshTokenApi()
+        val tokenBody = tokenResult?.body()
+        userSession.token = tokenBody
     }
 
     suspend fun <T> getDbResponse(
@@ -63,4 +78,6 @@ abstract class BaseRepository {
             AppError(throwable.message(), response?.code() ?: -1)
         }
     }
+
+    abstract suspend fun getRefreshTokenApi(): Response<UserToken>?
 }

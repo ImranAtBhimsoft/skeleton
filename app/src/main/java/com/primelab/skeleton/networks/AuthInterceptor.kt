@@ -1,6 +1,7 @@
 package com.primelab.skeleton.networks
 
-import android.util.Log
+
+import com.primelab.common.logger.Log
 import com.primelab.common.session.UserSession
 import okhttp3.Interceptor
 import okhttp3.Response

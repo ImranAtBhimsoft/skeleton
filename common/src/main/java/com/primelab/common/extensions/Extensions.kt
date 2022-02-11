@@ -126,3 +126,22 @@ fun AppCompatTextView.makeLinks(vararg links: Pair<String, View.OnClickListener>
         LinkMovementMethod.getInstance()
     this.setText(spannableString, TextView.BufferType.SPANNABLE)
 }
+
+/**
+ * Disable view for 700 ms
+ * to avoid multiple clicks
+ */
+fun View.setDebouncedClickListener(
+    listener: (view: View) -> Unit,
+    debounceIntervalMs: Int = 700
+) {
+    var lastTapTimestamp: Long = 0
+    val customListener = View.OnClickListener {
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastTapTimestamp > debounceIntervalMs) {
+            lastTapTimestamp = currentTime
+            listener(it)
+        }
+    }
+    this.setOnClickListener(customListener)
+}

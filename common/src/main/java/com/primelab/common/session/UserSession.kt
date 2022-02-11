@@ -1,6 +1,7 @@
 package com.primelab.common.session
 
 import com.primelab.common.database.dao.UserTokenDao
+import com.primelab.common.logger.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,15 +22,16 @@ class UserSession constructor(private val userTokenDao: UserTokenDao) {
         CoroutineScope(Dispatchers.IO).launch {
             token = userTokenDao.getToken()
         }
-//        MainScope().launch {
-//            token = userTokenDao.getToken()
-//        }
     }
 
     private fun save() {
-        token?.let {
-            CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO).launch {
+            token?.let {
                 userTokenDao.save(it)
+                Log.d(">>>Token","saved")
+            } ?: run {
+                Log.d(">>>Token","deleting")
+                userTokenDao.delete()
             }
         }
     }
