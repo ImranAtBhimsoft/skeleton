@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Skeleton</string>
-    <string name="hello_word">Hello World!</string>
+    <string name="welcome_message">Welcome to Skeleton\nDemo Application</string>
     <string name="click_me">Click Me</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
     <string name="login_fragment">Login Fragment</string>
     <string name="signup_fragment">Signup Fragment</string>
+    <string name="otp_fragment">Otp Fragment</string>
+    <string name="profile_fragment">Profile Fragment</string>
 </resources>

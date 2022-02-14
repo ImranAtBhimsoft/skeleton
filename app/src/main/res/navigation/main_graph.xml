@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/toMainFragment">
+
+    <fragment
+        android:id="@+id/toMainFragment"
+        android:name="com.primelab.skeleton.ui.MainFragment"
+        android:label="MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/toAuth" />
+    </fragment>
+    <include app:graph="@navigation/auth_graph" />
+    <fragment
+        android:id="@+id/toProfileFragment"
+        android:name="com.primelab.skeleton.ui.ProfileFragment"
+        android:label="ProfileFragment" />
+</navigation>

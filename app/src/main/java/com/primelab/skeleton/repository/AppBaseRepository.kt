@@ -16,6 +16,6 @@ abstract class AppBaseRepository constructor(
     private val userSession: UserSession
 ) : BaseRepository(userSession) {
     override suspend fun getRefreshTokenApi(): Response<UserToken>? {
-        return userSession.token?.let { api.refreshToken(it.token) }
+        return userSession.token.value?.let { api.refreshToken(it.token) }
     }
 }

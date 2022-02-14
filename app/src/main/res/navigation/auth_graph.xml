@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toAuth"
+    app:startDestination="@id/toLoginFragment">
+
+    <fragment
+        android:id="@+id/toLoginFragment"
+        android:name="com.primelab.skeleton.ui.auth.LoginFragment"
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/toSignupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_otpFragment"
+            app:destination="@id/toOtpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/toSignupFragment"
+        android:name="com.primelab.skeleton.ui.auth.SignupFragment"
+        android:label="SignupFragment">
+        <action
+            android:id="@+id/action_signupFragment_to_otpFragment"
+            app:destination="@id/toOtpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/toOtpFragment"
+        android:name="com.primelab.skeleton.ui.auth.OtpFragment"
+        android:label="OtpFragment" />
+
+</navigation>

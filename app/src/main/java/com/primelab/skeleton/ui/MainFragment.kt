@@ -32,7 +32,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         binding.clickMe.setOnClickListener {
             login()
         }
-        getAllUsers()
+        //getAllUsers()
     }
 
     private fun getAllUsers() {

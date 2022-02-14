@@ -35,8 +35,8 @@ class MainActivityTest {
     @Before
     fun setup() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
-        `when`(resources.getString(R.string.hello_word))
-            .thenReturn(context.getString(R.string.hello_word))
+        `when`(resources.getString(R.string.welcome_message))
+            .thenReturn(context.getString(R.string.welcome_message))
     }
 
     @Test
@@ -49,7 +49,7 @@ class MainActivityTest {
         onView(withId(R.id.hello_word))
             .perform(click())
             .check(matches(isDisplayed()))
-            .check(matches(withText(resources.getString(R.string.hello_word))))
+            .check(matches(withText(resources.getString(R.string.welcome_message))))
     }
 
     @After

@@ -49,7 +49,7 @@ abstract class BaseRepository(private val userSession: UserSession) {
     private suspend fun refreshToken() {
         val tokenResult = getRefreshTokenApi()
         val tokenBody = tokenResult?.body()
-        userSession.token = tokenBody
+        userSession.token.postValue(tokenBody)
     }
 
     suspend fun <T> getDbResponse(

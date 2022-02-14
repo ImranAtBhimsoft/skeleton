@@ -14,7 +14,7 @@ import okhttp3.Response
 class AuthInterceptor constructor(private val userSession: UserSession) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         Log.d(">>>>AuthInter", "AuthInterceptor->intercept()")
-        userSession.token?.let {
+        userSession.token.value?.let {
             Log.d(">>>>AuthInter", "Token is ${it.token}")
         }
         return chain.proceed(chain.request())
