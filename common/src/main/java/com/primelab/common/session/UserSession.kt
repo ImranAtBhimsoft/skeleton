@@ -1,5 +1,6 @@
 package com.primelab.common.session
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.primelab.common.database.dao.UserTokenDao
 import com.primelab.common.logger.Log
@@ -13,15 +14,18 @@ import kotlinx.coroutines.launch
  * PrimeLab.io on 10/02/2022.
  */
 class UserSession constructor(private val userTokenDao: UserTokenDao) {
-    var token: MutableLiveData<UserToken?> = MutableLiveData()
-        set(value) {
-            field = value
-            save()
-        }
+    private val _token: MutableLiveData<UserToken?> = MutableLiveData()
+    val token: LiveData<UserToken?> = _token
+
+    fun setUserToken(token: UserToken?) {
+        _token.value = token
+        save()
+    }
+
 
     init {
         CoroutineScope(Dispatchers.IO).launch {
-            token.postValue(userTokenDao.getToken())
+            _token.postValue(userTokenDao.getToken())
         }
     }
 
@@ -29,9 +33,8 @@ class UserSession constructor(private val userTokenDao: UserTokenDao) {
         CoroutineScope(Dispatchers.IO).launch {
             token.value?.let {
                 userTokenDao.save(it)
-                Log.d(">>>Token", "saved")
+                Log.d(">>>Token", "saved $it")
             } ?: run {
-                Log.d(">>>Token", "deleting")
                 userTokenDao.delete()
             }
         }

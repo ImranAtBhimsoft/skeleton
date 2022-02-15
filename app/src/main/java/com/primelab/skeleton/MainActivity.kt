@@ -1,6 +1,5 @@
 package com.primelab.skeleton
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -29,9 +28,11 @@ class MainActivity : BaseActivity() {
         } else {
             toolBar.visibility = View.GONE
             navigationBarView.visibility = View.GONE
+            // navController.graph.setStartDestination(R.id.toAuth)
             navController.navigate(R.id.toAuth)
         }
     }
+     lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +40,7 @@ class MainActivity : BaseActivity() {
         Log.d(">>>MainActivity", "onCreate()")
         navigationBarView = findViewById(R.id.bottom_navigation_view)
         toolBar = findViewById(R.id.tool_bar)
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        appBarConfiguration = AppBarConfiguration(navController.graph)
         toolBar.setupWithNavController(navController, appBarConfiguration)
         navigationBarView.setupWithNavController(navController)
         //userViewModel.userSession.token.observe(this, tokenObserver)
@@ -54,6 +55,11 @@ class MainActivity : BaseActivity() {
         super.onStop()
         userViewModel.userSession.token.removeObserver(tokenObserver)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         Log.d(">>>MainActivity", "onBackPressed()")

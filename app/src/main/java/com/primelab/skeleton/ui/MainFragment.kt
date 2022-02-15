@@ -7,6 +7,7 @@ import androidx.fragment.app.activityViewModels
 import com.primelab.common.extensions.observeResultFlow
 import com.primelab.common.logger.Log
 import com.primelab.common.session.UserSession
+import com.primelab.common.session.UserToken
 import com.primelab.common.ui.BaseFragment
 import com.primelab.skeleton.R
 import com.primelab.skeleton.databinding.FragmentMainBinding
@@ -24,6 +25,15 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
     private lateinit var binding: FragmentMainBinding
     private val userViewModel: UserViewModel by activityViewModels()
 
+    private val tokenObserver: (t: UserToken?) -> Unit = {
+        Log.d(">>>MainActivity", "Token Is $it")
+        if (it != null && it.token.isNotEmpty()) {
+
+        } else {
+            //requireActivity().finish()
+        }
+    }
+
     @Inject
     lateinit var userSession: UserSession
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,6 +43,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
             login()
         }
         //getAllUsers()
+        userViewModel.userSession.token.observe(viewLifecycleOwner, tokenObserver)
     }
 
     private fun getAllUsers() {

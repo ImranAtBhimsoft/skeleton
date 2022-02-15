@@ -45,6 +45,8 @@ dependencies {
     //Retrofit
     api retorfit.values()
 
+    //Navigation
+    api navigation.values()
     //Hilt
     implementation hiltDi.hiltAndroid
     kapt hiltDi.hiltCompiler

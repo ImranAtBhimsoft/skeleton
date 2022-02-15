@@ -8,4 +8,7 @@
     <string name="signup_fragment">Signup Fragment</string>
     <string name="otp_fragment">Otp Fragment</string>
     <string name="profile_fragment">Profile Fragment</string>
+    <string name="to_otp">To Otp</string>
+    <string name="to_signup">To Signup</string>
+    <string name="verify">Verify</string>
 </resources>

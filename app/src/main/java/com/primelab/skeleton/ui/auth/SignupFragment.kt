@@ -2,6 +2,7 @@ package com.primelab.skeleton.ui.auth
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.primelab.common.extensions.viewBinding
 import com.primelab.common.logger.Log
 import com.primelab.common.ui.BaseFragment
@@ -20,5 +21,9 @@ class SignupFragment : BaseFragment(R.layout.fragment_signup) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(">>>SignUp", "${binding.title.text}")
+
+        binding.toOtp.setOnClickListener {
+            findNavController().navigate(R.id.toOtpFragment)
+        }
     }
 }
