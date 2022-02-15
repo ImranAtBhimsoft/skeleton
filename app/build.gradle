@@ -42,8 +42,6 @@ android {
 
 dependencies {
     implementation project(":common")
-    //Navigation
-    //implementation navigation.values()
     //Hilt
     implementation hiltDi.hiltAndroid
     kapt hiltDi.hiltCompiler
