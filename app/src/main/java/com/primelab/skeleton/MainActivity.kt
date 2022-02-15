@@ -42,7 +42,6 @@ class MainActivity : BaseActivity() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         toolBar.setupWithNavController(navController, appBarConfiguration)
         navigationBarView.setupWithNavController(navController)
-
         //userViewModel.userSession.token.observe(this, tokenObserver)
     }
 
