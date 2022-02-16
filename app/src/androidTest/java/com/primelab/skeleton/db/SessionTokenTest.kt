@@ -1,14 +1,19 @@
 package com.primelab.skeleton.db
 
 import android.content.Context
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import androidx.test.platform.app.InstrumentationRegistry
 import com.primelab.common.session.UserSession
 import com.primelab.common.session.UserToken
 import com.primelab.skeleton.database.AppDataBase
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 /**
@@ -26,6 +31,9 @@ class SessionTokenTest {
         private const val TOKEN = "test_token"
     }
 
+    @get:Rule
+    var instantExecutorRule = InstantTaskExecutorRule()
+
     @Before
     fun setUp() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
@@ -35,7 +43,9 @@ class SessionTokenTest {
 
     @Test
     fun tesUserToken() {
-        userSession.token = UserToken(TOKEN)
-        assertEquals(userSession.token?.token, TOKEN)
+        runBlocking {
+            userSession.setUserToken(UserToken(TOKEN))
+            assertEquals(userSession.token.value?.token, TOKEN)
+        }
     }
 }

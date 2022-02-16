@@ -10,8 +10,10 @@ ext {
             junit4Version     : "4.13.2",
             espressoCore      : "3.4.0",
             testCore          : "1.4.0",
+            archCoretest      : "2.1.0",
             testRules         : "1.4.0",
             mockito           : "4.3.1",
+            mockitoInline     : "2.8.47",
             hilt              : "2.38.1",
 
             retrofit          : "2.9.0",
@@ -79,6 +81,7 @@ ext {
     ]
 
     androidTest = [
+            archCoretest  : "androidx.arch.core:core-testing:${versions.archCoretest}",
             testCore      : "androidx.test:core:${versions.testCore}",
             testCoreKtx   : "androidx.test:core-ktx:${versions.testCore}",
             junitExt      : "androidx.test.ext:junit:${versions.junitExt}",
@@ -88,12 +91,14 @@ ext {
             espressoCore  : "androidx.test.espresso:espresso-core:${versions.espressoCore}",
             mockitoCore   : "org.mockito:mockito-core:${versions.mockito}",
             mockitoAndroid: "org.mockito:mockito-android:${versions.mockito}",
+            mockitoInline : "org.mockito:mockito-inline:${versions.mockito}",
             room          : "androidx.room:room-testing:${versions.roomVersion}",
             navigation    : "androidx.navigation:navigation-testing:${versions.navVersion}"
     ]
 
     hiltTest = [
             hiltTesting : "com.google.dagger:hilt-android-testing:${versions.hilt}",
-            hiltCompiler: "com.google.dagger:hilt-android-compiler::${versions.hilt}",
+            hiltCompiler: "com.google.dagger:hilt-android-compiler:${versions.hilt}",
+            fragmentTesting: "androidx.fragment:fragment-testing:1.3.0-alpha06",
     ]
 }

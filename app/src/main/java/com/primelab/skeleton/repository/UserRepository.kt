@@ -13,7 +13,7 @@ import javax.inject.Inject
 class UserRepository @Inject constructor(
     private val api: UserApi,
     private val userDao: UserDao,
-    userSession: UserSession
+     val userSession: UserSession
 ) : AppBaseRepository(api, userSession) {
     suspend fun login(params: HashMap<String, Any>) =
         getNetWorkResponse(request = { api.login(params) })

@@ -19,6 +19,7 @@ class UserSession constructor(private val userTokenDao: UserTokenDao) {
 
     fun setUserToken(token: UserToken?) {
         _token.value = token
+//        _token.postValue( token)
         save()
     }
 

@@ -9,16 +9,20 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.primelab.common.logger.Log
+import com.primelab.common.session.UserSession
 import com.primelab.common.session.UserToken
 import com.primelab.common.ui.BaseActivity
 import com.primelab.skeleton.viewmodels.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
     private lateinit var navigationBarView: BottomNavigationView
     private lateinit var toolBar: MaterialToolbar
     private val userViewModel by viewModels<UserViewModel>()
+    @Inject
+    lateinit var userSession: UserSession
     private val navController by lazy { (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController }
     private val tokenObserver: (t: UserToken?) -> Unit = {
         Log.d(">>>MainActivity", "Token Is $it")
@@ -28,7 +32,6 @@ class MainActivity : BaseActivity() {
         } else {
             toolBar.visibility = View.GONE
             navigationBarView.visibility = View.GONE
-            // navController.graph.setStartDestination(R.id.toAuth)
             navController.navigate(R.id.toAuth)
         }
     }
@@ -48,12 +51,14 @@ class MainActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        userViewModel.userSession.token.observe(this, tokenObserver)
+//        userViewModel.repository.userSession.token.observe(this, tokenObserver)
+        userSession.token.observe(this, tokenObserver)
     }
 
     override fun onStop() {
         super.onStop()
-        userViewModel.userSession.token.removeObserver(tokenObserver)
+//        userViewModel.repository.userSession.token.removeObserver(tokenObserver)
+        userSession.token.removeObserver(tokenObserver)
     }
 
     override fun onSupportNavigateUp(): Boolean {

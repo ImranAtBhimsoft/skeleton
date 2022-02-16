@@ -8,7 +8,10 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.activityScenarioRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -23,20 +26,21 @@ import org.mockito.junit.MockitoJUnitRunner
  * Senior Software Engineer at
  * BhimSoft on 09/02/2022.
  */
-@RunWith(MockitoJUnitRunner::class)
+@HiltAndroidTest
+@RunWith(AndroidJUnit4::class)
 class MainActivityTest {
-    @get:Rule
+    @get:Rule(order = 0)
+    var hiltRule = HiltAndroidRule(this)
+
+    @get:Rule(order = 1)
     val activityRule = activityScenarioRule<MainActivity>()
 
-    @Mock
-    private lateinit var resources: Resources
     private lateinit var context: Context
 
     @Before
     fun setup() {
+        hiltRule.inject()
         context = InstrumentationRegistry.getInstrumentation().targetContext
-        `when`(resources.getString(R.string.welcome_message))
-            .thenReturn(context.getString(R.string.welcome_message))
     }
 
     @Test
@@ -46,10 +50,12 @@ class MainActivityTest {
 
     @Test
     fun viewTest() {
-        onView(withId(R.id.hello_word))
+        onView(withId(R.id.app_bar_layout))
             .perform(click())
             .check(matches(isDisplayed()))
-            .check(matches(withText(resources.getString(R.string.welcome_message))))
+        onView(withId(R.id.bottom_navigation_view))
+            .perform(click())
+            .check(matches(isDisplayed()))
     }
 
     @After

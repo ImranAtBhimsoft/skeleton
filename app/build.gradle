@@ -16,7 +16,8 @@ android {
         versionCode config.versionCode
         versionName config.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.primelab.skeleton.hilttest.HiltTestRunner"
     }
     buildFeatures {
         viewBinding true
@@ -37,6 +38,7 @@ android {
     }
     packagingOptions {
         exclude 'META-INF/common.kotlin_module'
+        exclude 'mockito-extensions/org.mockito.plugins.MockMaker'
     }
 }
 
@@ -52,6 +54,8 @@ dependencies {
 
     testImplementation test.junit4
     androidTestImplementation androidTest.values()
+
     androidTestImplementation hiltTest.hiltTesting
-    kaptTest hiltTest.hiltCompiler
+    kaptAndroidTest hiltTest.hiltCompiler
+    //debugImplementation hiltTest.fragmentTesting
 }

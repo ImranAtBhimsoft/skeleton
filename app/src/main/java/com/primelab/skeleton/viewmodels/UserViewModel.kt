@@ -14,9 +14,7 @@ import javax.inject.Inject
  * PrimeLab.io on 09/02/2022.
  */
 @HiltViewModel
-class UserViewModel @Inject constructor(private val repository: UserRepository) : ViewModel() {
-    @Inject
-    lateinit var userSession: UserSession
+class UserViewModel @Inject constructor( val repository: UserRepository) : ViewModel() {
 
     fun loginUser(param: HashMap<String, Any>) = resultFlow {
         repository.login(param)
