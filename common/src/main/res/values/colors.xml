@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="otp_color_selected">?colorPrimary</color>
+    <color name="otp_color_unselected">#ECECEC</color>
+    <color name="otp_color_error">#D53232</color>
+</resources>

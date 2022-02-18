@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OtpView">
+        <attr name="count" format="integer|reference" />
+        <attr name="android:fontFamily" format="reference" />
+        <attr name="item_background" format="reference" />
+        <attr name="error_message" format="string|reference" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="otp_error_message">Invalid Otp</string>
+
+</resources>

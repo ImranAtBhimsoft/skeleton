@@ -30,7 +30,7 @@ class MainFragment : BaseFragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainBinding.bind(view)
         binding.clickMe.setOnClickListener {
-            login()
+            binding.otpView.isValid()
         }
     }
 

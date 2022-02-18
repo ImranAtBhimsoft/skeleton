@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/toMainFragment"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/selector_otp"
         android:title="@string/home" />
     <item
         android:id="@+id/toProfileFragment"
