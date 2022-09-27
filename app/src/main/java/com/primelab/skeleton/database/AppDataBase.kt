@@ -19,15 +19,4 @@ import com.primelab.skeleton.networks.models.User
 )
 abstract class AppDataBase : AppRoomDataBase() {
     abstract fun getUserDao(): UserDao
-
-    companion object {
-        @Volatile
-        private var instance: AppDataBase? = null
-        fun getInstance(context: Context): AppDataBase =
-            instance ?: synchronized(this) {
-                instance ?: getRoomDatabase(context, "skeleton", AppDataBase::class.java).also {
-                    instance = it
-                }
-            }
-    }
 }
