@@ -28,8 +28,8 @@ class OtpView : LinearLayoutCompat {
     private var defaultCount: Int = 5
     private var focusColor: Int = Color.GREEN
     private var unFocusColor: Int = Color.GRAY
-    private lateinit var stateColor: ColorStateList
-    private val editTexts: MutableList<AppCompatEditText> = mutableListOf()
+      private lateinit var stateColor: ColorStateList
+      private val editTexts: MutableList<AppCompatEditText> = mutableListOf()
     private lateinit var errorMessage: String
 
     private lateinit var errorView: TextView
@@ -71,7 +71,7 @@ class OtpView : LinearLayoutCompat {
                 recycle()
             }
         }
-        stateColor = ColorStateList(
+            stateColor = ColorStateList(
             arrayOf(
                 intArrayOf(-android.R.attr.state_focused),  // Disabled
                 intArrayOf(android.R.attr.state_focused)    // Enabled
@@ -87,8 +87,8 @@ class OtpView : LinearLayoutCompat {
             LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
                 gravity = Gravity.CENTER
             }
-        for (i in 0 until defaultCount) {
-            val edt = AppCompatEditText(context)
+          for (i in 0 until defaultCount) {
+               val edt = AppCompatEditText(context)
             edt.layoutParams =
                 LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
                     weight = 1F
@@ -98,8 +98,8 @@ class OtpView : LinearLayoutCompat {
                 }
             edt.inputType = InputType.TYPE_CLASS_NUMBER
             edt.hint = "0"
-            edt.imeOptions =
-                if (i < defaultCount - 1) EditorInfo.IME_ACTION_NEXT else EditorInfo.IME_ACTION_DONE
+            edt.imeOptions
+                if (i < defaultCount - 1) EditorInfo.IME_ACTION_NEXT else  EditorInfo.IME_ACTION_DONE
             edt.tag = i
             edt.filters = arrayOf(InputFilter.LengthFilter(1))
             edt.gravity = Gravity.CENTER
@@ -107,8 +107,8 @@ class OtpView : LinearLayoutCompat {
             itemViewContainer.addView(edt)
             editTexts.add(edt)
         }
-        addView(itemViewContainer)
-        setUpErrorView()
+         addView(itemViewContainer)
+         setUpErrorView()
         setListener()
     }
 
@@ -150,7 +150,7 @@ class OtpView : LinearLayoutCompat {
     }
 
     fun isValid(): Boolean {
-        for (i in 0 until editTexts.size) {
+        for (i in 0 until  editTexts.size) {
             val edt = editTexts[i]
             if (edt.text?.length == 0) {
                 errorView.visibility = VISIBLE

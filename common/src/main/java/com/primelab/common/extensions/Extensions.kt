@@ -133,6 +133,8 @@ fun AppCompatTextView.makeLinks(vararg links: Pair<String, View.OnClickListener>
  */
 fun View.setDebouncedClickListener(
     listener: (view: View) -> Unit,
+    //The amount of time, in seconds,
+    // that elapses before the downlink interfaces are brought up after a state change of the uplink interfaces.
     debounceIntervalMs: Int = 700
 ) {
     var lastTapTimestamp: Long = 0

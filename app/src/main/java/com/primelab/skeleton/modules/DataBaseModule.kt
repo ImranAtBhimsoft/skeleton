@@ -1,6 +1,7 @@
 package com.primelab.skeleton.modules
 
 import android.content.Context
+import androidx.room.Room
 import com.primelab.common.database.dao.UserTokenDao
 import com.primelab.skeleton.database.AppDataBase
 import com.primelab.skeleton.database.daos.UserDao
@@ -21,7 +22,10 @@ import javax.inject.Singleton
 class DataBaseModule {
     @Singleton
     @Provides
-    fun provideDataBase(@ApplicationContext context: Context) = AppDataBase.getInstance(context)
+    fun provideDataBase(@ApplicationContext context: Context) : AppDataBase{
+    return Room.databaseBuilder(context,AppDataBase::class.java,"mydb").build()
+    }
+
 
     @Provides
     @Singleton

@@ -1,7 +1,10 @@
 package com.primelab.common.sharedpreferences
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.util.Property
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 import kotlin.reflect.KProperty
 
 /**
@@ -24,4 +27,18 @@ class SharedPrefs(private val sharePrefs: SharedPreferences) {
         sharePrefs.delete()
     }
 
+}
+
+
+
+class token @Inject constructor(@ApplicationContext context: Context){
+    var pref=context.getSharedPreferences("xyz",Context.MODE_PRIVATE)
+fun savetoken(token: String){
+    val edi=pref.edit()
+    edi.putString("usertoken",token)
+    edi.apply()
+}
+    fun gettoken():String?{
+        return pref.getString("usertoken",null)
+    }
 }

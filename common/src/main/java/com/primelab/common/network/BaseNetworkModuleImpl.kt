@@ -1,5 +1,6 @@
 package com.primelab.common.network
 
+import com.primelab.common.di.BaseUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,9 +13,12 @@ import retrofit2.converter.gson.GsonConverterFactory
  * PrimeLab.io on 09/02/2022.
  */
 abstract class BaseNetworkModuleImpl : BaseNetworkModule {
+    companion object{
+        const val BASE_URL="https://lmn.opq.rs"
+    }
     override fun getRetrofit(httpClient: OkHttpClient, suffix: String): Retrofit =
         Retrofit.Builder()
-            .baseUrl(getBaseUrl())
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
             .build()

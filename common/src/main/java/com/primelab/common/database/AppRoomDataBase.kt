@@ -3,6 +3,7 @@ package com.primelab.common.database
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
+
 import com.primelab.common.database.dao.UserTokenDao
 
 /**
@@ -12,6 +13,7 @@ import com.primelab.common.database.dao.UserTokenDao
  */
 abstract class AppRoomDataBase : RoomDatabase() {
     abstract fun getUserTokenDao(): UserTokenDao
+
     companion object {
         fun <T : RoomDatabase> getRoomDatabase(
             context: Context,
@@ -21,7 +23,7 @@ abstract class AppRoomDataBase : RoomDatabase() {
             Room.databaseBuilder(context, clazz, prefix + getName())
                 .fallbackToDestructiveMigration()
                 .build()
-
         private fun getName(): String = "_room_data_base"
     }
+
 }
