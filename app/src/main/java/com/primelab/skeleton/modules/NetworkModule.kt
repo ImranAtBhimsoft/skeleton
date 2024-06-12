@@ -21,14 +21,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class NetworkModule : BaseNetworkModuleImpl() {
 
-    override fun getBaseUrl(): String {
-        return "https://lmn.opq.rs"
-    }
-
-    @BaseUrl
-    @Singleton
-    @Provides
-    fun provideBaseUrl() = getBaseUrl()
+//    override fun getBaseUrl(): String {   //alag fil m
+//        return "https://lmn.opq.rs"
+//    }
+//
+//    @BaseUrl
+//    @Singleton
+//    @Provides
+//    fun provideBaseUrl() = getBaseUrl()
 
     @Provides
     @Singleton

@@ -10,7 +10,7 @@ import retrofit2.Retrofit
  * PrimeLab.io on 09/02/2022.
  */
 interface BaseNetworkModule {
-    fun getBaseUrl(): String
+//    fun getBaseUrl(): String
     fun getRetrofit(httpClient: OkHttpClient, suffix: String = ""): Retrofit
     fun getOkHttpClient(autInterceptor: Interceptor?): OkHttpClient
     fun <T> getAPi(retrofit: Retrofit, clazz: Class<T>): T
